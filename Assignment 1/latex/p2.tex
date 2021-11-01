@@ -1,0 +1,51 @@
+\documentclass[main.tex]{article}
+\usepackage{subfiles}
+\usepackage{hyperref}
+\usepackage{csquotes}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[]{geometry}
+
+\begin{document}
+    \section[P2: Variance of UDF]{Variance of Uniform Density Function}
+    The covariance of a function is defined by
+    \begin{equation}
+        Cov(X, Y) = E \left [ \left ( X - E(X) \right )  \left ( Y - E(Y) \right ) \right ] = E[XY] - E[X]E[Y]
+    \end{equation}
+    The variance is given by
+    \begin{equation}
+        \label{eq:var}
+        Var(X) = Cov(X, X) = E[X^2] - \left ( E[X] \right )^2
+    \end{equation}
+    The uniform distribution is (given that $b>a$)
+    \begin{equation}
+        \label{eq:unidist}
+        U(x;a,b) = \left\{\begin{matrix}
+        \frac{1}{b-a} & x \in [a,b] \\
+        0 & \textup{otherwise}
+        \end{matrix}\right.
+    \end{equation}
+    The expected value, $E[X]$, for the uniform distribution can be calculated as follows
+    \begin{equation}
+        \label{eq:unidist-exp}
+        E_U[X] = \int_{-\infty}^{\infty} x U(x) \mathrm{d}x = \frac{1}{b-a} \int_{a}^{b} x \mathrm{d}x = \frac{1}{b-a} \left [ \frac{x^2}{2} \right ]_{a}^{b} = \frac{b+a}{2}
+    \end{equation}
+    The value of $(E[X^2])$ can be calculated as follows
+    \begin{equation}
+        \label{eq:unidist-exp2}
+        E[X^2] = \int_{-\infty}^{+\infty} x^2 U(x) \mathrm{d}x = \frac{1}{b-a} \int_{a}^{b} x^2 \mathrm{d}x = \frac{1}{b-a} \left[ \frac{x^3}{3} \right ]_a^b = \frac{b^3-a^3}{3(b-a)} = \frac{a^2+ab+b^2}{3}
+    \end{equation}
+    Using equations \ref{eq:unidist-exp} and \ref{eq:unidist-exp2} to calculate variance according to \ref{eq:var} gives
+    \begin{equation}
+        \begin{matrix}
+            \label{eq:unidist-varproof}
+            \mathrm{Var}_{U}(X) = E[X^2]-\left(E[X]\right)^2 = \left(\frac{a^2+ab+b^2}{3}\right) - \left(\frac{(b+a)^2}{4}\right) \\
+            \Rightarrow \mathrm{Var}(X) = \frac{4a^2+4ab+4b^2-3a^2-6ab-3b^2}{12} = \frac{a^2-2ab+b^2}{12} = \frac{(b-a)^2}{12}
+            \end{matrix}
+    \end{equation}
+    Therefore, equation \ref{eq:unidist-varproof} proves that
+    \begin{equation}
+        \label{eq:unidist-var}
+        \mathrm{Var}(X) = \frac{(b-a)^2}{12}
+    \end{equation}
+\end{document}

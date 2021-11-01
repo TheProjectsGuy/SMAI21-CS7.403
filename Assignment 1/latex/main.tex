@@ -1,0 +1,76 @@
+\documentclass[]{article}
+\usepackage{subfiles}
+\usepackage{hyperref}
+\usepackage{csquotes}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[]{geometry}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage[section]{placeins}
+
+\graphicspath{{./figures/}}
+\numberwithin{equation}{section}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+\title{Assignment 1: Random Variables}
+\author{
+    Avneesh Mishra
+    \thanks{MS2k21 - Reg. No. 2021701032} \\
+    avneesh.mishra@research.iiit.ac.in
+}
+\date{September 20, 2021}
+
+\begin{document}
+    \maketitle
+
+    \tableofcontents
+    \listoffigures
+    \pagebreak
+
+    % --- Problem 1 ---
+    \subfile{p1.tex}
+    % --- Problem 2 ---
+    \subfile{p2.tex}
+    % --- Problem 3 ---
+    \subfile{p3.tex}
+    % --- Problem 4 ---
+    \subfile{p4.tex}
+    % --- Problem 5 ---
+    \subfile{p5.tex}
+    % --- Problem 6 ---
+    \subfile{p6.tex}
+    % --- Problem 7 ---
+    \subfile{p7.tex}    
+
+    \pagebreak
+    \numberwithin{equation}{subsection}
+    
+    % --- All Appendix ---
+    \appendix
+    \subfile{appendix.tex}
+\end{document}

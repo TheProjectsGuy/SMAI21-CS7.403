@@ -1,0 +1,58 @@
+\documentclass[main.tex]{article}
+\usepackage{subfiles}
+\usepackage{hyperref}
+\usepackage{csquotes}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[]{geometry}
+
+\begin{document}
+    \section[P1: PMF ranges]{PMF: Finite and Infinite range}
+    Every \textbf{PMF} (Probability Mass Function) has to obey the following properties
+    \begin{equation}
+        \label{prop:pmfge0}
+        P_X(x_k) \ge 0 \, \forall \, x_k \in R_X = \left \{ x_1, x_2, \cdots  \right \}
+    \end{equation}
+    \begin{equation}
+        \label{prop:pmfs1}
+        \sum_{x_i \in R_X} P_X (x_i) = 1
+    \end{equation}
+    Where $R_X$ is the range of values that $X$, a discrete random variable, can take. Assumptions for this question are as follows
+    \begin{itemize}
+        \item If $R_X$ has finite elements, the PMF has \textbf{finite} range, else if $R_X$ has \textit{countably infinite}\footnote{Elements are in one-to-one correspondence with natural numbers} elements, the PMF has \textbf{infinite} range.
+    \end{itemize}
+
+    \subsection[Finite]{Finite Range: Bernouli Distribution}
+    A PMF $P_X (x_k) = P(X = x_k)$, with finite range is assumed to have a finite number of elements that the discrete random variable $X$ can take. A simple example is the \emph{Bernouli distribution} where $R_X = \left \{ 0,1 \right \}$.
+    \begin{equation}
+        \label{eq:bernouli}
+        P_X(x;p) = \left\{\begin{matrix}
+        p & \textup{if } x \textup{ is } 1 \\
+        1-p & \textup{if } x \textup{ is } 0
+        \end{matrix}\right.
+    \end{equation}
+    Where $0 \le p \le 1$, which also means that $1 \ge 1-p \ge 0$. This proves \ref{prop:pmfge0}: as the function $P_X$ can only yield $p$ or $1-p$, both being in range $[0,1]$. To prove \ref{prop:pmfs1}, we can do
+    \begin{equation}
+        \label{eq:bernouli-s1}
+        \sum_{v \in \left \{ 0,1 \right \}} P_X (v) = P(X=0) + P(X=1) = (1-p) + p = 1
+    \end{equation}
+    Hence, a finite range Probability Mass Function is achieved using Bernouli's distribution. Example is a coin toss (with $p = 0.5$).
+
+    \subsection[Infinite]{Infinite Range: Exponentially decaying distribution}
+    Consider an experiment involving multiple coin tosses. We are interested in calculating the probability of all the outcomes being \texttt{HEAD}. The discrete random variable $X$ is the trial number with consecutive heads (for example $1$ trial with $1$ head, $2$ trial with $2$ heads, and so on). The range of values for $X$ is the countably infinite set of \emph{natural numbers}, that is $R_X = \mathbb{N}$. Basically, $P(X = i)$ is the probability that we do the coin toss $i$ times and we get heads as the outcome for every trial. \par
+    It is clear that $P(X=1) = 0.5$: probability of head in a single coin toss and $P(X=2) = 0.5^{2} = 0.25$: probability of two coin tosses giving heads. This can be extended to any number of coin tosses, giving the probability function
+    \begin{equation}
+        \label{eq:exp}
+        P(X=k) = P_X(k) = (0.5)^k
+    \end{equation}
+    Since every power of $0.5$ is positive, property \ref{prop:pmfge0} holds good. The proof of property \ref{prop:pmfs1} can be done by the sum of infinite geometric progression, the general form is given below
+    \begin{equation}
+        S = \sum_{i=0}^{n-1} a \, r^i = \frac{a}{1-r}
+    \end{equation}
+    Consider $a=r=0.5$, the sum of all probabilities can be calculated as following
+    \begin{equation}
+        \label{eq:exp-s1}
+        \sum_{k \in R_X = \mathbb{N}} P_X(k) = \sum_{k=1}^{\infty} 0.5^k = \sum_{k=1}^{\infty} 0.5 \times 0.5^{k-1} = \frac{0.5}{1-0.5} = 1
+    \end{equation}
+    This proves that $P_X$ is a probability distribution. Its value exponentially decreases (decays) to 0.
+\end{document}

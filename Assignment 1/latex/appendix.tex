@@ -1,0 +1,141 @@
+\documentclass[main.tex]{article}
+\usepackage{subfiles}
+\usepackage{hyperref}
+\usepackage{csquotes}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[]{geometry}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\begin{document}
+    \section{Appendix}
+
+    \subsection{Code for P3}
+    \label{app:code-p3}
+    \lstinputlisting[language=Python, caption=Code to generate Figure \ref{fig:sm-mean-var}]{../python/p3.py}
+
+    \pagebreak
+    \subsection[Evaluating \texorpdfstring{$\int_{-\infty}^{\infty} e^{-x^2} \mathrm{d}x$}{Integral(exp(-x**2))}]{Evaluating integral of \texorpdfstring{$e^{-x^2}$}{exp(-x^2)} over \texorpdfstring{$\left (-\infty, \infty \right )$}{all real numbers}}
+    \label{app:proof-int-exp-mxsq}
+    Here, we shall prove the result
+    \begin{equation}
+        \label{app:int-exp-mxsq-result}
+        \int_{-\infty}^{\infty} e^{-x^2} \mathrm{d}x = \sqrt{\pi}
+    \end{equation}
+    To prove \ref{app:int-exp-mxsq-result}, consider the integral to be $I$, that is
+    \begin{equation}
+        I = \int_{-\infty}^{\infty} e^{-x^2} \mathrm{d}x
+    \end{equation}
+    Consider evaluating the integral below (we'll introduce evaluation in multiple dimensions)
+    \begin{equation}
+        \begin{split}
+            J & = \int_{y=-\infty}^{\infty} \int_{x=-\infty}^{\infty} e^{-x^2-y^2} \mathrm{d}x \, \mathrm{d}y
+            = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} e^{-x^2} e^{-y^2} \mathrm{d}x \, \mathrm{d}y \\
+            & = \int_{-\infty}^{\infty} e^{-y^2} \left ( \int_{-\infty}^{\infty} e^{-x^2} \mathrm{d}x \right ) \mathrm{d}y
+            = \left ( \int_{-\infty}^{\infty} e^{-x^2} \mathrm{d}x \right ) \left ( \int_{-\infty}^{\infty} e^{-y^2} \mathrm{d}y  \right ) \\
+            & = I \cdot I = I^2
+        \end{split}
+        \label{app:exp-2d-expansion}
+    \end{equation}
+    We will evaluate a value for $J$, then, using result of $J = I^2$ (from \ref{app:exp-2d-expansion}), we will solve for $I$. It is also useful to recall the conversion from cartesian system to polar coordinate system
+    \begin{equation}
+        x = r \cos(\theta) ;\; y = r \sin(\theta) ;\; \mathrm{d}x \, \mathrm{d}y = r \mathrm{d}\theta \mathrm{d}r ;\; r \rightarrow (0, \infty) ;\; \theta \rightarrow (0, 2\pi)
+    \end{equation}
+    Using this, we can compute $J$ as follows
+    \begin{equation}
+        \begin{split}
+            J & = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} e^{-x^2} e^{-y^2} \mathrm{d}x \, \mathrm{d}y
+            = \int_{0}^{\infty} \int_{0}^{2\pi} e^{-r^2} r \mathrm{d}\theta \mathrm{d}r \\
+            & = \int_{0}^{\infty} e^{-r^2} r \left ( \int_{0}^{2\pi} \mathrm{d}\theta \right ) dr
+            = 2\pi \int_{0}^{\infty} e^{-r^2} r dr = 2\pi \frac{\left [ -e^{-r^2} \right ]_{0}^{\infty}}{2} \\
+            & = 2\pi \frac{\left [ (-0) - (-1) \right ]}{2} = \pi
+        \end{split}
+        \label{app:proof-exp-2d}
+    \end{equation}
+    Therefore, from \ref{app:proof-exp-2d}, we have $J = \pi$. Since $J = I^2$ (from \ref{app:exp-2d-expansion}), we have $I = \sqrt{\pi}$, that is
+    \begin{equation}
+        \label{app:res-exp-mxsq}
+        I = \int_{-\infty}^{\infty} e^{-x^2} \mathrm{d}x = \sqrt{\pi}
+    \end{equation}
+    
+    \pagebreak
+    \subsection[Evaluating \texorpdfstring{$\int_{-\infty}^{\infty} x^{2}e^{-x^2} \mathrm{d}x$}{Integral((x**2)*exp(-x**2))}]{Evaluating integral of $x^{2}e^{-x^2}$ over $\left (-\infty, \infty \right )$}
+    \label{app:proof-int-xsq-exp-mxsq}
+    Here, we shall prove the result
+    \begin{equation}
+        \int_{-\infty}^{\infty} x^2 e^{-x^2} \, \mathrm{d}x = \frac{\sqrt{\pi}}{2}
+    \end{equation}
+    To prove this, let
+    \begin{equation}
+        I = \int_{-\infty}^{\infty} x^2 e^{-x^2} \, \mathrm{d}x
+    \end{equation}
+    To evaluate the integral, we use the identity
+    \begin{equation}
+        \int u \, \mathrm{d}v = uv - \int v \, \mathrm{d}u
+        \label{app:indentity-int-mul}
+    \end{equation}
+    Let us use the following substitution
+    \begin{equation}
+        u = x ;\; \mathrm{d}v = xe^{-x^2} \mathrm{d}x \Rightarrow \mathrm{d}u = \mathrm{d}x ;\; v = \frac{-e^{-x^2}}{2}
+    \end{equation}
+    Using \ref{app:indentity-int-mul} to solve for $I$, we can get
+    \begin{equation}
+        I = \int_{-\infty}^{\infty} \left (x \right ) \left ( x e^{-x^2} \right ) \, \mathrm{d}x
+        = \left [ \frac{-xe^{-x^2}}{2} \right ]_{-\infty}^{\infty} + \frac{1}{2} \int_{-\infty}^{\infty} e^{-x^2} \mathrm{d}x = \frac{\sqrt{\pi}}{2}
+    \end{equation}
+    Note that $-xe^{-x^2} = 0$ for $x = \pm \, \infty$. This proves the result
+    \begin{equation}
+        \int_{-\infty}^{\infty} x^2 e^{-x^2} \, \mathrm{d}x = \frac{\sqrt{\pi}}{2}
+        \label{app:res-xsq-exp-mxsq}
+    \end{equation}
+
+    \pagebreak
+    \subsection{Code for P6}
+    \label{app:code-p6}
+    \subsubsection[Normal Distribution]{Normal Distribution with $\mu = 0$ and $\sigma = 3.0$}
+    \label{app:code-p6-normal}
+    \lstinputlisting[language=Python, caption=Code to generate Figure \ref{fig:p6-cdfinv-pdf-normal}, firstline=2]{../python/p6_normal.py}
+    \subsubsection[Rayleigh Distribution]{Rayleigh Distribution with $\sigma = 1.0$}
+    \label{app:code-p6-rayleigh}
+    \lstinputlisting[language=Python, caption=Code to generate Figure \ref{fig:p6-cdfinv-pdf-rayleigh}]{../python/p6_rayleigh.py}
+    \subsubsection[Exponential Distribution]{Exponential Distribution with $\lambda = 1.5$}
+    \label{app:code-p6-exp}
+    \lstinputlisting[language=Python, caption=Code to generate Figure \ref{fig:p6-cdfinv-pdf-exp}]{../python/p6_exp.py}
+    \subsubsection[All PDFs]{Plotting Normal, Rayleigh and Exponential PDFs}
+    \label{app:code-p6-all}
+    \lstinputlisting[language=Python, caption=Code to generate Figure \ref{fig:p6-subfig-all-pdfs}, firstline=2]{../python/p6_allpdfs.py}
+
+    \pagebreak
+    \subsection{Code for P7}
+    \label{app:code-p7}
+    \lstinputlisting[language=Python, caption=Code to generate Figure \ref{fig:p7-result}]{../python/p7.py}
+
+\end{document}

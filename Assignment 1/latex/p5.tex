@@ -1,0 +1,101 @@
+\documentclass[main.tex]{article}
+\usepackage{subfiles}
+\usepackage{hyperref}
+\usepackage{csquotes}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[]{geometry}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\begin{document}
+    \section[P5: Prove \texorpdfstring{$\mu$}{mean} and \texorpdfstring{$\sigma^2$}{variance} of \texorpdfstring{$N(x; \mu, \sigma^2)$}{Normal distribution}]{Mean and Variance of continuous normal PDF}
+    The normal probability density function for a continuous random variable $X$ is given by
+    \begin{equation}
+        \tag{\ref{eq:normal} revisited}
+        N(x; \mu, \sigma^2) = \frac{1}{\sqrt{2\pi \sigma^2}} \; \mathrm{exp} \left ( -\frac{(x-\mu)^2}{2\sigma^2} \right )
+        \label{eq:normal-2}
+    \end{equation}
+    Note that the expectation of a function of a continuous random variable is given by
+    \begin{equation}
+        E_{x \sim X} [f(X)] = \int_{x} f(x) p(x) \, \mathrm{d}x
+    \end{equation}
+    Where $p(x)$ is the probability density function of $X$ (in this case, it's described by $N(x; \mu, \sigma^2)$ in \ref{eq:normal-2}). We shall also use a commonly known identity
+    \begin{equation}
+        \label{eq:int-exp-mxsq}
+        \int_{-\infty}^{\infty} e^{-x^2} \mathrm{d}x = \sqrt{\pi}
+    \end{equation}
+    This is proven as \ref{app:res-exp-mxsq} in Appendix \ref{app:proof-int-exp-mxsq}. Another known identity we will use is
+    \begin{equation}
+        \label{eq:int-xsq-exp-mxsq}
+        \int_{-\infty}^{\infty} x^2 e^{-x^2} \, \mathrm{d}x = \frac{\sqrt{\pi}}{2}
+    \end{equation}
+    This is proven in Appendix \ref{app:proof-int-xsq-exp-mxsq}.
+    We can proceed to prove the mean of $N(x; \mu, \sigma^2)$ first.
+    \subsection[Proof of \texorpdfstring{$\mu$}{mean}]{Proving Mean of Normal PDF}
+    \label{subsec:proof-mu-normal}
+    The mean value of a PDF is given as $E(X)$, for the normal PDF, we get
+    \begin{equation}
+        \begin{split}
+            E_{X\sim N}[X] & = \int_{-\infty}^{\infty} x \, N(x; \mu, \sigma^2) \mathrm{d}x
+            = \int_{-\infty}^{\infty} \frac{x}{\sqrt{2\pi \sigma^2}} \; e^{ -\frac{(x-\mu)^2}{2\sigma^2}} \mathrm{d}x \\
+            & = \int_{-\infty}^{\infty} \frac{x}{\sqrt{2\pi \sigma^2}} \; e^{ -\left (\frac{(x-\mu)}{\sigma\sqrt{2}}\right )^2} \mathrm{d}x
+        \end{split}
+        \label{eq:mean-normal-toprove}
+    \end{equation}
+    We can solve \ref{eq:mean-normal-toprove} by substituting a function of $x$ for $v$ (use the equations below)
+    \begin{equation}
+        \begin{split}
+            \frac{x-\mu}{\sigma\sqrt{2}} = v & \Rightarrow x = \left ( \sigma\sqrt{2} \right ) v + \mu \\
+            & \Rightarrow \mathrm{d}x = \sigma \sqrt{2} \; \mathrm{d}v \\
+            & x \rightarrow (-\infty, \infty) \Rightarrow v \rightarrow (-\infty, \infty)
+        \end{split}
+    \end{equation}
+    Substituting this in \ref{eq:mean-normal-toprove}, we get
+    \begin{equation}
+        \begin{split}
+            E_{X\sim N}[X] & = \int_{-\infty}^{\infty} \frac{x}{\sqrt{2\pi \sigma^2}} \; e^{ -\left (\frac{(x-\mu)}{\sigma\sqrt{2}}\right )^2} \mathrm{d}x 
+            = \frac{1}{\sigma \sqrt{2\pi}} \int_{-\infty}^{\infty} \left ( \sigma \sqrt{2} \; v + \mu \right ) e^{-v^2} \sigma \sqrt{2} \, \mathrm{d}v \\
+            & = \frac{1}{\sqrt{\pi}} \left [ \sigma \sqrt{2} \int_{-\infty}^{\infty} ve^{-v^2} \mathrm{d}v + \mu \int_{-\infty}^{\infty} e^{-v^2} \mathrm{d}v \right ]
+            = \frac{\mu}{\sqrt{\pi}} \int_{-\infty}^{\infty} e^{-v^2} \mathrm{d}v \\
+            & = \frac{\mu}{\sqrt{\pi}} \sqrt{\pi} = \mu
+        \end{split}
+        \label{eq:p5-mean-proof}
+    \end{equation}
+    Note that $\int_{-\infty}^{\infty} ve^{-v^2} \mathrm{d}v = 0$ as $f_1(v) = ve^{-v^2}$ is an odd function ($f_1(-v) = -f_1(v)$), so the integral over $(-\infty, \infty)$ is $0$ (all values cancel out). The equation \ref{eq:p5-mean-proof} proves that indeed for a normal distribution, the mean is $\mu$, that is
+    \begin{equation}
+        E_{X\sim N}[X] = \mu
+    \end{equation}
+    We can now prove the variance for a normal distribution
+    \subsection[Proof of \texorpdfstring{$\sigma^2$}{variance}]{Proving Variance of Normal PDF}
+    The variance of a Normal Probability Density Function for a continuous random variable is given by (consider $E[X]=\mu$ as proven in subsection \ref{subsec:proof-mu-normal})
+    \begin{equation}
+        Var(X) = E \left [ \left (X - E[X] \right )^2 \right ]
+        = E_N \left [ \left (X - \mu \right )^2 \right ]
+        = \int_{-\infty}^{\infty} \left ( x - \mu \right )^2 N(x;\mu,\sigma^2) dx
+    \end{equation}
+    To solve this, we make the same assumption as in subsection \ref{subsec:proof-mu-normal}.
+    \begin{equation}
+        \begin{split}
+            \frac{x-\mu}{\sigma\sqrt{2}} = v & \Rightarrow x = \left ( \sigma\sqrt{2} \right ) v + \mu 
+            \Rightarrow \left ( x - \mu \right )^2 = 2 \sigma^2 v^2 \\
+            & \rightarrow \mathrm{d}x = \sigma \sqrt{2} \; \mathrm{d}v \\
+            & x \rightarrow (-\infty, \infty) \Rightarrow v \rightarrow (-\infty, \infty)
+        \end{split}
+    \end{equation}
+    Now, solving for variance becomes
+    \begin{equation}
+        \begin{split}
+            Var(X)
+            & = \int_{-\infty}^{\infty} \frac{\left ( x - \mu \right )^2}{\sqrt{2\pi \sigma^2}} e^{ -\left (\frac{(x-\mu)}{\sigma\sqrt{2}}\right )^2} \mathrm{d}x
+            = \int_{-\infty}^{\infty} \frac{2\sigma^2 v^2}{\sqrt{2\pi \sigma^2}} e^{-v^2} \sigma \sqrt{2} \,\mathrm{d}v \\
+            & = \frac{2\sigma^2}{\sqrt{\pi}} \int_{-\infty}^{\infty} v^2 e^{-v^2} \, \mathrm{d}v
+            = \frac{2\sigma^2}{\sqrt{\pi}} \frac{\sqrt{\pi}}{2} = \sigma^2
+        \end{split}
+    \end{equation}
+    The result $\int_{-\infty}^{\infty} v^2 e^{-v^2} \, \mathrm{d}v$ is proved in Appendix \ref{app:proof-int-xsq-exp-mxsq}. The above result proves that for a normal distribution, the variance is $\sigma^2$, that is
+    \begin{equation}
+        Var(X) = E_N \left [ \left (X - E_N[X] \right )^2 \right ] = \sigma^2
+    \end{equation}
+\end{document}

@@ -1,0 +1,54 @@
+\documentclass[]{article}
+\usepackage{subfiles}
+\usepackage{hyperref}
+\usepackage{csquotes}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[]{geometry}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+
+\begin{document}
+    \section[P4: Simplified \texorpdfstring{$\sigma^2$}{variance}]{Simplified variance for discrete random variables}
+    Reiterating the equation which has to be proven
+    \begin{equation}
+        Var(X) = Cov(X, X) = E \left [ \left (X - E[X] \right )^2 \right ] = E[X^2] - \left ( E[X] \right )^2
+        \tag{\ref{eq:var} revisited}
+        \label{eq:var-2}
+    \end{equation}
+    Starting from the left side of \ref{eq:var-2}, we get
+    \begin{equation}
+        \label{eq:p4-to-prove}
+        Var(X) = Cov(X, X) = E \left [ \left (X - E[X] \right )^2 \right ]
+    \end{equation}
+    The expectation for a function of a discrete random variable $X$ (whose possible values are given by $R_X$), is given by
+    \begin{equation}
+        E_{x \sim X} \left [ f(X) \right ] = \sum_{x \in R_X} f(x) P(X=x)
+    \end{equation}
+    Simplifying the equation \ref{eq:p4-to-prove} using the following known conditions
+    \begin{enumerate}
+        \item The value of $E[X]$ is the mean of the discrete random variable given by \\
+            \begin{equation}
+                E[X] = \sum_{x \in R_X} x P_X(x) = \mu
+            \end{equation}
+        \item $\mu$ is a constant for a given probability distribution $P_X$
+        \item $\sum_{x \in R_X} P_X(x) = 1$ because $P_X$ is a probability mass function
+    \end{enumerate}
+    we get
+    \begin{equation}
+        \label{eq:p4-var-proof}
+        \begin{split}
+            E \left [ \left (X - E[X] \right )^2 \right ] & = E \left [ \left (X - \mu \right )^2 \right ]
+            = \sum_{x \in R_X} \left ( x - \mu \right )^2 P_X(x)
+            = \sum_{x \in R_X} \left ( x^2 + \mu^2 - 2x\mu \right ) P_X(x) \\
+            & = \sum_{x \in R_X} x^2 P_X(x) + \mu^2 \sum_{x \in R_X} P_X(x) - 2\mu \sum_{x \in R_X} x P_X(x) \\
+            & = E_{x\sim X}[X^2] + \mu^2 \cdot 1 - 2\mu \cdot \mu = E[X^2] + \mu^2 - 2\mu^2 = E[X^2] - \mu^2 \\
+            & = E[X^2] - \left ( E[X] \right )^2
+        \end{split}
+    \end{equation}
+    The equation \ref{eq:p4-var-proof} proves \ref{eq:var-2}, we therefore obtain
+    \begin{equation}
+        Var(X) = E[X^2] - \left ( E[X] \right )^2
+    \end{equation}
+\end{document}
