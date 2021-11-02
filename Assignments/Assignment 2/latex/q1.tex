@@ -1,0 +1,316 @@
+% !TeX root = main.tex
+
+\section[Q1: EVD and SVD]{Eigen Values and Eigen Vectors}
+% Preface
+\subfile{q1-preface.tex}
+
+% Answer 1A
+\subsection{A: Generalized to Matrices}
+Eigenvector decomposition, given by equation \ref{eq:evd-standard} can only be done for \textbf{square} matrices.
+
+\noindent
+Singular Value Decomposition on the other hand, given by equation \ref{eq:svd-standard}, can be done for matrices that are not square also.
+
+Hence, \textit{Singular Value Decomposition is more generalizable} to matrices as it can be applied to matrices of any shape (square or not square).
+
+% Answer 1B
+\subsection{B: Find SVD of a matrix}
+Usually, numerical approaches are used to calculate the SVD. This is typically a two-step procedure.
+
+In the first step, the matrix is reduced to a bidiagonal matrix (where the elements in the diagonal and either the diagonal above or the diagonal below are non-zero). This is done because calculating SVD of a bidiagonal matrix is faster.
+
+In the second step, SVD of the resultant bidiagonal matrix is calculated. Here, the left and right eigenvectors can be calculated. This is done using a bounded iterative algorithm like QR Algorithm.
+
+The above is a complex numeric procedure, usually abstracted and available on many platforms. When computing SVD of a given matrix, intuition based methods can be directly used (but they do not generalize or scale well).
+
+\subsubsection*{SVD of $M$}
+
+The given matrix is
+
+\begin{equation}
+    M = \begin{bmatrix}
+        4 & 8 \\
+        11 & 7 \\
+        14 & -2
+        \end{bmatrix}
+    \nonumber
+\end{equation}
+
+We first calculate the left and right-singular vectors of $M$, then get the singular values. The left and right matrices are given by
+
+\begin{align}
+    M_L = M M^\top = \begin{bmatrix}
+        80 & 100 & 40 \\
+        100 & 170 & 140 \\
+        40 & 140 & 200
+        \end{bmatrix} &&
+    M_R = M^\top M = \begin{bmatrix}
+        333 & 81 \\
+        81 & 117
+        \end{bmatrix}
+\end{align}
+
+Calculating the eigen-vectors of $M_L$. First calculate the eigen-values using $\textup{det}(M_L - \lambda I) = 0$ equation
+
+\begin{align}
+    &\textup{det}(M_L - \lambda \textup{I}) = 0
+    \Rightarrow
+    \textup{det} \left (
+        \begin{bmatrix}
+            80 & 100 & 40 \\
+            100 & 170 & 140 \\
+            40 & 140 & 200
+        \end{bmatrix} - \lambda
+        \begin{bmatrix}
+            1 & 0 & 0 \\
+            0 & 1 & 0 \\
+            0 & 0 & 1
+        \end{bmatrix}
+        \right ) = 0 
+    \nonumber \\
+    &\Rightarrow \textup{det} \left (
+        \begin{bmatrix}
+            80 - \lambda & 100 & 40 \\
+            100 & 170 - \lambda & 140 \\
+            40 & 140 & 200 - \lambda
+        \end{bmatrix}
+        \right ) = 0
+    \Rightarrow -\lambda^3 + 450 \lambda - 32400 \lambda = 0
+    \nonumber \\
+    &\Rightarrow \lambda = \left [ 0, 90, 360 \right ]
+    \nonumber
+\end{align}
+
+Solving for the eigen-vectors using the following equation
+
+\begin{equation}
+    \begin{bmatrix}
+        80 & 100 & 40 \\
+        100 & 170 & 140 \\
+        40 & 140 & 200
+        \end{bmatrix} \begin{bmatrix}
+        x \\ y \\ z
+        \end{bmatrix} = \begin{bmatrix}
+            80 x + 100 y + 40 z \\
+            100 x + 170 y + 140 z \\
+            40 x + 140 y + 200 z
+            \end{bmatrix} = \lambda_i \begin{bmatrix}
+        x \\ y \\ z
+        \end{bmatrix}
+\end{equation}
+
+For different $\lambda$ values, we get
+
+\begin{align}
+    \lambda_1 &= 0 \rightarrow \begin{bmatrix}
+        80 x + 100 y + 40 z \\
+        100 x + 170 y + 140 z \\
+        40 x + 140 y + 200 z
+        \end{bmatrix} = \begin{bmatrix}
+        0 \\ 0 \\ 0
+        \end{bmatrix} \Rightarrow \begin{bmatrix}
+        x \\ y \\ z
+        \end{bmatrix} = \begin{bmatrix}
+        2z \\ -2z \\ z
+        \end{bmatrix}
+    \nonumber \\
+    \lambda_2 &= 90 \rightarrow \begin{bmatrix}
+        80 x + 100 y + 40 z \\
+        100 x + 170 y + 140 z \\
+        40 x + 140 y + 200 z
+        \end{bmatrix} = \begin{bmatrix}
+        90x \\ 90y \\ 90z
+        \end{bmatrix} \Rightarrow \begin{bmatrix}
+        x \\ y \\ z
+        \end{bmatrix} = \begin{bmatrix}
+        -z \\ -0.5z \\ z
+        \end{bmatrix}
+    \nonumber \\
+    \lambda_3 &= 360 \rightarrow \begin{bmatrix}
+        80 x + 100 y + 40 z \\
+        100 x + 170 y + 140 z \\
+        40 x + 140 y + 200 z
+        \end{bmatrix} = \begin{bmatrix}
+        360x \\ 360y \\ 360z
+        \end{bmatrix} \Rightarrow \begin{bmatrix}
+        x \\ y \\ z
+        \end{bmatrix} = \begin{bmatrix}
+        0.5z \\ z \\ z
+        \end{bmatrix}
+    \nonumber
+\end{align}
+
+This gives the potential candidates for $U$. For $V$, we get the eigen-vectors of $M_R$. First calculating eigen-values using
+
+\begin{align}
+    &\textup{det}(M_R - \lambda \textup{I}) = 0 \Rightarrow
+    \textup{det} \left ( \begin{bmatrix}
+        333 - \lambda & 81 \\
+        81 & 117 - \lambda
+        \end{bmatrix} \right ) = \lambda^2 - 450 \lambda + 32400 = 0 
+    \nonumber \\
+    &\Rightarrow \lambda = \left [ 90, 360 \right ]
+    \nonumber
+\end{align}
+
+Solving for eigen-vectors using the following equation
+
+\begin{equation}
+    \begin{bmatrix}
+        333 & 81 \\
+        81 & 117
+        \end{bmatrix} \begin{bmatrix}
+        x \\ y
+        \end{bmatrix} = \begin{bmatrix}
+        333x + 81y \\
+        81x + 117y
+        \end{bmatrix} = \lambda_i \begin{bmatrix}
+        x \\ y
+        \end{bmatrix}
+\end{equation}
+
+For different $\lambda$ values, we get
+
+\begin{align}
+    \lambda_1 &= 90 \rightarrow \begin{bmatrix}
+        333x + 81y \\
+        81x + 117y
+        \end{bmatrix} = \begin{bmatrix}
+        90 x \\ 90 y
+        \end{bmatrix} \Rightarrow
+        \begin{bmatrix}
+        x \\ y
+        \end{bmatrix} = \begin{bmatrix}
+        -y/3 \\ y
+        \end{bmatrix}
+    \nonumber \\
+    \lambda_2 &= 360 \rightarrow \begin{bmatrix}
+        333x + 81y \\
+        81x + 117y
+        \end{bmatrix} = \begin{bmatrix}
+        360 x \\ 360 y
+        \end{bmatrix} \Rightarrow
+        \begin{bmatrix}
+        x \\ y
+        \end{bmatrix} = \begin{bmatrix}
+        3y \\ y
+        \end{bmatrix}
+    \nonumber
+\end{align}
+
+All the above eigen-vectors can be assumed to be unit vectors (so that the matrices $U$ and $V$ become orthogonal). The resultant matrix is given by
+
+\begin{align}
+    M = U \Sigma V^\top &\Rightarrow \begin{bmatrix}
+        4 & 8 \\
+        11 & 7 \\
+        14 & -2
+        \end{bmatrix} = \begin{bmatrix}
+        0.5z_1 & -z_2 & 2z_3 \\
+        z_1 & -0.5z_2 & -2z_3 \\
+        z_1 & z_2 & z_3
+        \end{bmatrix} \begin{bmatrix}
+        \sigma_1 & 0 \\
+        0 & \sigma_2 \\
+        0 & 0
+        \end{bmatrix} \begin{bmatrix}
+        3y_1 & -y_2 / 3 \\
+        y_1 & y_2
+        \end{bmatrix}^\top
+    \nonumber \\
+    &\Rightarrow M =
+    \begin{bmatrix}
+        4 & 8 \\
+        11 & 7 \\
+        14 & -2
+        \end{bmatrix} = \begin{bmatrix}
+        1.5 \sigma_1 y_1 z_1 + \frac{\sigma_2 y_2 z_2}{3} & 0.5 \sigma_1 y_1 z_1 - \sigma_2 y_2 z_2 \\
+        3 \sigma_1 y_1 z_1 + \frac{5 \sigma_2 y_2 z_2}{30} & \sigma_1 y_1 z_1 - 0.5 \sigma_2 y_2 z_2 \\
+        3 \sigma_1 y_1 z_1 - \frac{\sigma_2 y_2 z_2}{3} & \sigma_1 y_1 z_1 + \sigma_2 y_2 z_2
+        \end{bmatrix}
+    \nonumber
+\end{align}
+
+Since vectors in $U$ are unit vectors: $z_1 = \pm 2/3$, $z_2 = \pm 2/3$, $z_3 = \pm 1/3$. Since vectors in $V$ are also unit vectors: $y_1 = \pm 1/\sqrt{10}$, $y_2 = \pm 3/\sqrt{10}$. Using only the $+$ve values, we get the following
+
+\begin{equation}
+    M = \begin{bmatrix}
+        4 & 8 \\
+        11 & 7 \\
+        14 & -2
+        \end{bmatrix} = \begin{bmatrix}
+        0.316227 \sigma_1 + 0.210818 \sigma_2 & 0.105409 \sigma_1 - 0.632455 \sigma_2 \\
+        0.632455 \sigma_1 + 0.105409 \sigma_2 & 0.210818 \sigma_1 - 0.316227 \sigma_2 \\
+        0.632455 \sigma_1 - 0.210818 \sigma_2 & 0.210818 \sigma_1 + 0.632455 \sigma_2
+        \end{bmatrix} \Rightarrow \begin{bmatrix}
+        \sigma_1 \\ \sigma_2
+        \end{bmatrix} = \begin{bmatrix}
+        18.973665 \\ -9.486832
+        \end{bmatrix}
+        \nonumber
+\end{equation}
+
+But since singular values \textbf{have} to be positive, we can change the sign of $z_2$ and thereby consider $z_2 = -2/3$. This changes the above equation as
+
+\begin{equation}
+    M = \begin{bmatrix}
+        4 & 8 \\
+        11 & 7 \\
+        14 & -2
+        \end{bmatrix} = \begin{bmatrix}
+        0.316227 \sigma_1 - 0.210818 \sigma_2 & 0.105409 \sigma_1 + 0.632455 \sigma_2 \\
+        0.632455 \sigma_1 - 0.105409 \sigma_2 & 0.210818 \sigma_1 + 0.316227 \sigma_2 \\
+        0.632455 \sigma_1 + 0.210818 \sigma_2 & 0.210818 \sigma_1 - 0.632455 \sigma_2
+        \end{bmatrix} \Rightarrow \begin{bmatrix}
+        \sigma_1 \\ \sigma_2
+        \end{bmatrix} = \begin{bmatrix}
+        18.973665 \\ 9.486832
+        \end{bmatrix}
+    \nonumber
+\end{equation}
+
+The above equations give
+
+\begin{align}
+    U = \begin{bmatrix}
+        0.\bar{3} & 0.\bar{6} & 0.\bar{6} \\
+        0.\bar{6} & 0.\bar{3} & -0.\bar{6} \\
+        0.\bar{6} & -0.\bar{6} & 0.\bar{3}
+        \end{bmatrix}
+    &&
+    \Sigma = \begin{bmatrix}
+        18.973665 & 0 \\
+        0 & 9.486832 \\
+        0 & 0
+        \end{bmatrix}
+    &&
+    V = \begin{bmatrix}
+        0.948683 & -0.316227 \\
+        0.316227 & 0.948683
+        \end{bmatrix}
+    \label{eq:q1-svd-m-res}
+\end{align}
+
+Hence, the singular value decomposition of $M$ is given by
+
+\begin{equation}
+    M = U \Sigma V^\top = \begin{bmatrix}
+        0.\bar{3} & 0.\bar{6} & 0.\bar{6} \\
+        0.\bar{6} & 0.\bar{3} & -0.\bar{6} \\
+        0.\bar{6} & -0.\bar{6} & 0.\bar{3}
+        \end{bmatrix} \begin{bmatrix}
+        18.973665 & 0 \\
+        0 & 9.486832 \\
+        0 & 0
+        \end{bmatrix} \begin{bmatrix}
+        0.948683 & 0.316227 \\
+        -0.316227 & 0.948683
+        \end{bmatrix} = \begin{bmatrix}
+        4 & 8 \\
+        11 & 7 \\
+        14 & -2
+        \end{bmatrix}
+    \nonumber
+\end{equation}
+
+The equation \ref{eq:q1-svd-m-res} gives the SVD of $M$.

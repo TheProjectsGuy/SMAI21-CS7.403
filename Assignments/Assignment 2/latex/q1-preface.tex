@@ -1,0 +1,33 @@
+% !TeX root = q1.tex
+
+\subsection*{Eigen Value Decomposition}
+
+A matrix $\mathbf{A}$ can be decomposed into
+
+\begin{equation}
+    \mathbf{A} = \mathbf{Q} \, \mathbf{\Lambda} \, \mathbf{Q}^{-1}
+    \label{eq:evd-standard}
+\end{equation}
+
+Where the matrix $\mathbf{Q}$ is formed by horizontally stacking eigenvectors of $\mathbf{A}$ as columns and the matrix $\mathbf{\Lambda} = \textup{diag}(\mathbf{\lambda})$ where $\mathbf{\lambda}$ is the vector containing the corresponding eigen-values.
+The relation between $\mathbf{A}$, an eigenvector and corresponding eigen-value is given by
+
+\begin{equation}
+    \mathbf{A} \mathbf{v}_i = \lambda_i \mathbf{v}_i
+    \nonumber
+\end{equation}
+
+\subsection*{Singular Value Decomposition}
+
+A matrix $\mathbf{M}$ can be decomposed as
+
+\begin{equation}
+    \mathbf{M} = \mathbf{U} \, \mathbf{\Sigma} \, \mathbf{V}^{*}
+    \label{eq:svd-standard}
+\end{equation}
+
+Where $\mathbf{\Sigma}$ is a diagonal matrix consisting of singular values (usually in descending order).
+The columns of $\mathbf{U}$ are formed by left-singular vectors of $\mathbf{M}$, which are the eigenvectors of $\mathbf{M} \, \mathbf{M}^\top$.
+The columns of $\mathbf{V}$ are formed by right-singular vectors of $\mathbf{M}$, which are the eigenvectors of $\mathbf{M}^\top \, \mathbf{M}$. The matrix $\mathbf{V}^{*}$ is the conjugate transpose of $\mathbf{V}$.
+
+If $\mathbf{M}$ is real, $\mathbf{U}$ and $\mathbf{V}$ can be guaranteed to be orthogonal matrices and the decomposition can be written as $\mathbf{U} \, \mathbf{\Sigma} \, \mathbf{V}^\top$.
