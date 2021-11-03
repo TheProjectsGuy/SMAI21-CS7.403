@@ -10,6 +10,7 @@ A repository to store all items pertaining to course `Statistical Methods in AI`
     - [Table of contents](#table-of-contents)
     - [Contents](#contents)
         - [Assignments](#assignments)
+        - [Project](#project)
 
 ## Contents
 
@@ -20,3 +21,8 @@ The assignments given out (for the course) are summarized in the table below
 | Assignment | Description |
 | :--- | :---- |
 | [Assignment 1](./Assignments/Assignment%201/README.md) | Random variables and density functions |
+| [Assignment 2](./Assignments/Assignment%202/README.md) | PCA, Logistic regression, KNN |
+
+### Project
+
+The project can be found in the [Project](./Project/) folder. It can also be found at [TheProjectsGuy/SMAI21-CS7.403-Project](https://github.com/TheProjectsGuy/SMAI21-CS7.403-Project).
