@@ -1,0 +1,3 @@
+[submodule "Projects/SMAI-Project"]
+	path = Projects/SMAI-Project
+	url = git@github.com:TheProjectsGuy/SMAI21-CS7.403-Project.git
