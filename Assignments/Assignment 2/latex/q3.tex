@@ -1,0 +1,40 @@
+% !TeX root = main.tex
+
+\section[Q3: Bayes Theorem]{Bayes Theorem}
+
+% Answer A
+\subsection{A: Prior and Posterior probabilities}
+
+The \textbf{prior} probability is the probability of the event \textit{before} considering the evidence and the \textbf{posterior} probability is the probability of the event \textit{after} considering the evidence (likelihood and evidence).
+
+The Bayes Theorem states how a hypothesis should be updated, given some new evidence
+
+\begin{equation}
+    \mathbb{P} \left ( H \mid E \right ) = \frac{\mathbb{P} \left ( E \mid H \right ) \, \mathbb{P} (H)}{\mathbb{P} (E)}
+    \label{eq:bayes-theorem}
+\end{equation}
+
+Where $\mathbb{P} \left ( H \mid E \right )$ is the \textit{Posterior} probability, $\mathbb{P} \left ( E \mid H \right )$ is the likelihood, $\mathbb{P} (E)$ is the evidence, and $\mathbb{P} (H)$ is the \textit{Prior} probability.
+
+% Answer B
+\subsection{B: Bayes Rule example}
+
+Let $F$ denote the event of having the flu and $S$ denote the event of having the symptoms currently being experienced (headache and a soar throat).
+
+Given that $P(S | F) = 0.90$, that is, the probability of getting the symptoms $S$ given that one has the flu is $90\%$.
+
+Given that $P(F) = 0.05$, that is, the probability of getting the flu is $5\%$.
+
+Given that $P(S) = 0.20$, that is, the chances of getting the symptoms in the population.
+
+We need to estimate the probability of having flu given the symptoms, that is, $P(F|S)$.
+
+\begin{align}
+    P(F|S) &= \frac{P(S|F) \times P(F)}{P(S)}
+    \nonumber \\
+    &= \frac{0.90 \times 0.05}{0.20} = \frac{9}{40} = 0.225 = 22.5 \%
+\end{align}
+
+Therefore, there is a $22.5 \%$ chance of having the flu, given the symptoms being experienced.
+
+However, this result may be flawed, given that there is knowledge of a friend being sick with flu. Since data about transmissibility and interactions is not available, no assumptions are included in the evidence (only symptoms used here).
