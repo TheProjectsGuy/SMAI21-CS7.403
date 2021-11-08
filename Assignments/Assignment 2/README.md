@@ -19,5 +19,6 @@ The contents of this folder are summarized in the folder below
 | S. No. | Item | Description |
 | :--- | :--- | :--- |
 | 1 | [Assignment_2.pdf](./Assignment_2.pdf) | Given questions for the assignment |
-| 2 | [Iris.csv](./Iris.csv) | Given dataset for the assignment |
-| 3 | [LogisticRegression_sample_result.png](./LogisticRegression_sample_result.png) | A sample result of Logistic Regression algorithm |
+| 2 | [main.pdf](./latex/main.pdf) | The PDF file containing proposed results (submission) |
+| 3 | [Iris.csv](./Iris.csv) | Given dataset for the assignment |
+| 4 | [LogisticRegression_sample_result.png](./LogisticRegression_sample_result.png) | A sample result of Logistic Regression algorithm |
