@@ -1,0 +1,37 @@
+% !TeX root = main.tex
+
+\section[Q2: LDA and PCA]{LDA and PCA}
+
+% Answer A
+\subsection{A: Points about PCA}
+
+Suppose we have our 2D data as $\mathbf{X}$ and we decompose (the covariance matrix of) $\mathbf{X}$ as $\mathbf{UDV^\top}$, then which of the following are correct
+
+\paragraph{(a) PCA can be useful if all elements of $\mathbf{D}$ are equal}
+This is \textbf{false}. If all elements in $\mathbf{D}$ are equal, then the data is uniformly spread across all principal components. Removing any will remove an equal fraction of useful statistical information from the data. PCA (projection onto a subset of principal components) won't be useful then.
+
+\paragraph{(b) PCA can be useful if all elements of $\mathbf{D}$ are not equal}
+This is \textbf{true}, depending on the particular values (how spread they are). If the values are different, then the different principal components have different contribution towards the data, hence a sub-space of components with highest values in $\mathbf{D}$ can be created without too much loss in statistical information.
+
+\paragraph{(c) $\mathbf{D}$ is not full-rank if all points in $\mathbf{X}$ lie on a straight line}
+This is \textbf{true}. If all points in $\mathbf{X}$ are on a straight line, then there is no statistical information along any axis other than the one on which the data is (the line). Therefore, the primary principal axis contains a value but the second principal axis would contain 0 value. Hence, $\mathbf{D}$ is not a full-rank matrix (it's a diagonal matrix, with the second - or the last - element being 0).
+
+\paragraph{(d) $\mathbf{V}$ is not full-rank if all points in $\mathbf{X}$ lie on a straight line}
+This is \textbf{false}. Since the matrix whose SVD is being done is \textit{real}, the matrices $\mathbf{U}$ and $\mathbf{V}$ can be guaranteed to be real orthogonal matrices (which are full rank). Hence, $\mathbf{V}$ is a full-rank matrix.
+
+\paragraph{(e) $\mathbf{D}$ is not full-rank if all points in $\mathbf{X}$ lie on a circle}
+This is \textbf{false}. If all points in $\mathbf{X}$ lie on a circle in 2D, then they're distributed equally about any two orthogonal principal axis. Therefore, the values of the diagonal elements are going to be non-zero. Hence, the matrix $\mathbf{D}$ is going to be full rank.
+
+% Answer B
+\subsection{B: True / False}
+
+\paragraph{Statement: } PCA will project the data points (multi-class) on a line which preserve information useful for data classification.
+
+\subsubsection*{TL;DR}
+This is \textbf{false}. PCA (Principal Component Analysis) projects into a subspace of principal components, whereas LDA (Linear Discriminant Analysis) projects points such that inter-class variance (from mean) is maximized whereas intra-class variance is minimized.
+
+\subsubsection*{PCA}
+Principal Component Analysis (PCA) projects the data points onto the principal components (eigen-vectors of the covariance matrix of data) that preserve the most amount of statistical information (have the highest eigen-values / singular values). This is an \textit{unsupervised} dimensionality reduction algorithm.
+
+\subsubsection*{LDA}
+Linear Discriminant Analysis (LDA) projects the \textit{labelled} data such that the resulting projection has a large distance between the mean of the classes while the classes have a small intra-class variance. That is, multi-class data is divided into small clusters that are physically apart in the smaller dimensional subspace. This is a \textit{supervised} dimensionality reduction algorithm (the class labels are required).
