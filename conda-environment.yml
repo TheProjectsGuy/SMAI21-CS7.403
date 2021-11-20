@@ -6,6 +6,7 @@ dependencies:
   - numpy
   - matplotlib
   - jupyter
+  - cvxpy
   - scipy
   - sympy
   - scikit-learn
