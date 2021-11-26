@@ -12,3 +12,5 @@ dependencies:
   - scikit-learn
   - pandas
   - pylint
+  - pip:
+    -tensorflow
