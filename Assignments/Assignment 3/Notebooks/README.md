@@ -22,5 +22,5 @@ The following are currently being worked on
 
 | S. No. | Item | Description |
 | :--- | :--- | :--- |
-| 3.2 | [CNN.ipynb](./CNN.ipynb) | Convolutional Neural Networks |
+| 3.2 | [CNN.ipynb](./CNN.ipynb) | Convolutional Neural Networks. Use the [pytorch-condaenv.yml](./pytorch-condaenv.yml) environment for pytorch. |
 | 3.3 | [RNN.ipynb](./RNN.ipynb) | Recurrent Neural Networks |

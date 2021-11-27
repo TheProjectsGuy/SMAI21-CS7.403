@@ -1,0 +1,21 @@
+name: pytorch-smai
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - numpy
+  - matplotlib
+  - jupyter
+  - cvxpy
+  - scipy
+  - sympy
+  - scikit-learn
+  - pandas
+  - pylint
+  - pytorch=1.10.0=py3.9_cuda11.3_cudnn8_0
+  - torchvision
+  - torchaudio
+  - cudatoolkit=11.3
+  - seaborn
+  - torchinfo
