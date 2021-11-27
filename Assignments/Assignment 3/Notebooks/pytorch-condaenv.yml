@@ -19,3 +19,4 @@ dependencies:
   - cudatoolkit=11.3
   - seaborn
   - torchinfo
+  - scikit-image
