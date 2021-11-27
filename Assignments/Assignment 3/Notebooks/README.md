@@ -15,6 +15,7 @@ The notebooks are listed below
 | S. No. | Item | Description |
 | :--- | :--- | :--- |
 | 3.1 | [SVM.ipynb](./SVM.ipynb) | Support Vector Machines |
+| 3.4 | [Clustering.ipynb](./Clustering.ipynb) | Clustering algorithms |
 | 3.5 | [Decision Trees and Random Forests.ipynb](./Decision%20Trees%20and%20Random%20Forests.ipynb) | Decision Trees and Random Forests |
 
 The following are currently being worked on
@@ -23,4 +24,3 @@ The following are currently being worked on
 | :--- | :--- | :--- |
 | 3.2 | [CNN.ipynb](./CNN.ipynb) | Convolutional Neural Networks |
 | 3.3 | [RNN.ipynb](./RNN.ipynb) | Recurrent Neural Networks |
-| 3.4 | [Clustering.ipynb](./Clustering.ipynb) | Clustering algorithms |
