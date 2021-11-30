@@ -14,8 +14,12 @@ Assignment 3 submission by Avneesh Mishra. Details are as follows
 
 ## Contents
 
-Contents of this folder are summarized below
+The notebooks are listed below
 
 | S. No. | Item | Description |
 | :--- | :--- | :--- |
-| [Notebooks](./Notebooks/README.md) folder | Jupyter Notebooks for submission |
+| 3.1 | [SVM](./SVM/README.md) | Support Vector Machines |
+| 3.2 | [CNN](./CNN/README.md) | Convolutional Neural Network |
+| 3.3 | [RNN](./RNN/README.md) | Recurrent Neural Networks |
+| 3.4 | [Clustering](./Clustering/README.md) | k-Means and Hierarchical Agglomerative Clustering |
+| 3.5 | [Decision Trees and Random Forests](./Decision%20Trees%20and%20Random%20Forests/README.md) | Decision trees and Random Forests |
