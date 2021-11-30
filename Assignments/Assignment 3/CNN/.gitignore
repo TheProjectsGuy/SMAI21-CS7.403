@@ -1,0 +1,5 @@
+# Ignore the tests
+test/
+# Ignore trained models (but one)
+*.pth
+!best_model.pth
