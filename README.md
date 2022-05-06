@@ -33,6 +33,4 @@ The assignments given out (for the course) are summarized in the table below
 
 ### Project
 
-~~The project can be found at [TheProjectsGuy/SMAI21-CS7.403-Project](https://github.com/TheProjectsGuy/SMAI21-CS7.403-Project).~~
-This is probably never going to be made public
-:sweat_smile::see_no_evil:
+The project can be found at [TheProjectsGuy/SMAI21-CS7.403-Project](https://github.com/TheProjectsGuy/SMAI21-CS7.403-Project).
