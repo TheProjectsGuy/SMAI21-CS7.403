@@ -1,5 +1,9 @@
 # Statistical Methods in AI (Monsoon 2021) @ IIITH
 
+[Written Notes](https://iiitaphyd-my.sharepoint.com/:f:/g/personal/avneesh_mishra_research_iiit_ac_in/EmC6b3gqbVZJvIxgCPufJ5MBKRn1Nn28a5aTIcAoZsbnNg?e=z3o8kM)
+
+---
+
 A repository to store all items pertaining to course `Statistical Methods in AI`
 
 - **Professor**: [Anoop M. Namboodiri](https://faculty.iiit.ac.in/~anoop/)
